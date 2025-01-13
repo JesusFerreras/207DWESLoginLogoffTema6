@@ -4,7 +4,7 @@
     <input type="password" id="contrasenaUsuario" name="contrasenaUsuario" placeholder="Contraseña" required><br>
     <?php print(isset($mensajeError)? $mensajeError : ''); ?>
     <div>
-        <input type="submit" id="inicioSesion" name="inicioSesion" value="Iniciar sesión">
+        <input type="submit" id="iniciarSesion" name="iniciarSesion" value="Iniciar sesión">
         <!--<input type="submit" id="registro" name="registro" value="Registrarse">-->
         <input type="submit" id="volver" name="volver" value="Volver">
     </div>

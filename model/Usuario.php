@@ -33,7 +33,7 @@
             $this->imagenUsuario = $imagenUsuario;
         }
 
-    public function getCodUsuario() {
+        public function getCodUsuario() {
             return $this->codUsuario;
         }
 
@@ -105,5 +105,18 @@
             $this->listaOpinionesUsuario = $listaOpinionesUsuario;
         }
         */
+        
+        public function getArrayDatos() {
+            return [
+                'codUsuario' => $this->codUsuario,
+                'password' => $this->password,
+                'descUsuario' => $this->descUsuario,
+                'numConexiones' => $this->numConexiones,
+                'fechaHoraUltimaConexion' => $this->fechaHoraUltimaConexion,
+                'fechaHoraUltimaConexionAnterior' => $this->fechaHoraUltimaConexionAnterior,
+                'perfil' => $this->perfil,
+                'imagenUsuario' => $this->imagenUsuario
+            ];
+        }
     }
 ?>

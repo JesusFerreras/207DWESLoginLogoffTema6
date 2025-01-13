@@ -1,14 +1,15 @@
 <?php
     if (!isset($_SESSION['usuarioDAW207LoginLogoffTema6'])) {
-        $_SESSION['paginaEnCurso'] = 'inicioPrivado';
+        $_SESSION['paginaEnCurso'] = 'login';
         header('Location: index.php');
         exit();
     }
     
     if (isset($_REQUEST['volver'])) {
-        $temp = $_SESSION['paginaAnterior'];
-        $_SESSION['paginaAnterior'] = $_SESSION['paginaEnCurso'];
+        $_SESSION['paginaEnCurso'] = 'inicioPrivado';
         header('Location: index.php');
         exit();
     }
+    
+    require_once $view['layout'];
 ?>

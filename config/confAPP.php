@@ -1,9 +1,11 @@
 <?php
-    require_once 'model/DB.php';
-    require_once 'model/UsuarioDB.php';
-    require_once 'model/DBPDO.php';
-    require_once 'model/Usuario.php';
-    require_once 'model/UsuarioPDO.php';
+    foreach (scandir('model') as $fichero) {
+        if ($fichero != '.' && $fichero != '..') {
+            require_once 'model/'.$fichero;
+        }
+    }
+    
+    require_once 'core/231018libreriaValidacion.php';
     
     $view = [
         'layout' => 'view/layout.php',

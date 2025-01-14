@@ -8,11 +8,15 @@
 
                 $stmt = $DB->prepare($sentenciaSQL);
                 
-                $stmt->execute($parametros);
+                if(is_null($parametros)) {
+                    $stmt->execute();
+                } else {
+                    $stmt->execute($parametros);
+                }
 
                 return $stmt;
             } catch (PDOException $ex) {
-                $_SESSION['Error'] = new AppError($ex->getCode(), $ex->getMessage(), $ex->getFile(), $ex->getLine(), $_SERVER['paginaEnCurso']);
+                $_SESSION['error'] = new AppError($ex->getCode(), $ex->getMessage(), $ex->getFile(), $ex->getLine(), $_SESSION['paginaEnCurso']);
                 $_SESSION['paginaEnCurso'] = 'error';
                 header('index.html');
                 exit();

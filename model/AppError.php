@@ -54,7 +54,7 @@
             $this->paginaSiguiente = $paginaSiguiente;
         }
         
-        public function getDatosArray() {
+        public function getArrayDatos() {
             return [
                 'codError' => $this->codError,
                 'descError' => $this->descError,

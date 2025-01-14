@@ -8,8 +8,8 @@
         private $fechaHoraUltimaConexionAnterior;
         private $perfil;
         private $imagenUsuario;
-        //private $listaOpinionesUsuario;
-        /*
+        private $listaOpinionesUsuario;
+        
         public function __construct($codUsuario, $password, $descUsuario, $numConexiones, $fechaHoraUltimaConexion, $fechaHoraUltimaConexionAnterior, $perfil, $imagenUsuario, $listaOpinionesUsuario) {
             $this->codUsuario = $codUsuario;
             $this->password = $password;
@@ -20,17 +20,6 @@
             $this->perfil = $perfil;
             $this->imagenUsuario = $imagenUsuario;
             $this->listaOpinionesUsuario = $listaOpinionesUsuario;
-        }
-        */
-        public function __construct($codUsuario, $password, $descUsuario, $numConexiones, $fechaHoraUltimaConexion, $fechaHoraUltimaConexionAnterior, $perfil, $imagenUsuario) {
-            $this->codUsuario = $codUsuario;
-            $this->password = $password;
-            $this->descUsuario = $descUsuario;
-            $this->numConexiones = $numConexiones;
-            $this->fechaHoraUltimaConexion = $fechaHoraUltimaConexion;
-            $this->fechaHoraUltimaConexionAnterior = $fechaHoraUltimaConexionAnterior;
-            $this->perfil = $perfil;
-            $this->imagenUsuario = $imagenUsuario;
         }
 
         public function getCodUsuario() {
@@ -64,11 +53,11 @@
         public function getImagenUsuario() {
             return $this->imagenUsuario;
         }
-        /*
+        
         public function getListaOpinionesUsuario() {
             return $this->listaOpinionesUsuario;
         }
-        */
+        
         public function setCodUsuario($codUsuario): void {
             $this->codUsuario = $codUsuario;
         }
@@ -100,11 +89,10 @@
         public function setImagenUsuario($imagenUsuario): void {
             $this->imagenUsuario = $imagenUsuario;
         }
-        /*
+        
         public function setListaOpinionesUsuario($listaOpinionesUsuario): void {
             $this->listaOpinionesUsuario = $listaOpinionesUsuario;
         }
-        */
         
         public function getArrayDatos() {
             return [
@@ -115,7 +103,8 @@
                 'fechaHoraUltimaConexion' => $this->fechaHoraUltimaConexion,
                 'fechaHoraUltimaConexionAnterior' => $this->fechaHoraUltimaConexionAnterior,
                 'perfil' => $this->perfil,
-                'imagenUsuario' => $this->imagenUsuario
+                'imagenUsuario' => $this->imagenUsuario,
+                'listaOpinionesUsuario' => $this->listaOpinionesUsuario
             ];
         }
     }

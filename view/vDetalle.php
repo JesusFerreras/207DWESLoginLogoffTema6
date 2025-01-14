@@ -20,7 +20,7 @@
                 $contenido .= "<tr><th>$clave</th><td>";
                 if ($valor instanceof Usuario) {
                     foreach ($valor->getArrayDatos() as $key => $value) {
-                        $contenido .= $key . '=' . ($value instanceof DateTime? 'datetime' : $value) . '<br>';
+                        $contenido .= $key . '=' . ($value instanceof DateTime? $value->format('Y-m-d H:i:s') : $value) . '<br>';
                     }
                 } else {
                     $contenido .= $valor;

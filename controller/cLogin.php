@@ -18,8 +18,8 @@
     }
     
     if (isset($_REQUEST['iniciarSesion'])) {
-        if (isset($_REQUEST['codigoUsuario']) && isset($_REQUEST['contrasenaUsuario'])) {
-            $usuario = UsuarioPDO::validarUsuario($_REQUEST['codigoUsuario'], $_REQUEST['contrasenaUsuario']);
+        if (isset($_REQUEST['codUsuario']) && isset($_REQUEST['password'])) {
+            $usuario = UsuarioPDO::validarUsuario($_REQUEST['codUsuario'], $_REQUEST['password']);
 
             if ($usuario instanceof Usuario) {
                 $usuario = UsuarioPDO::registrarUltimaConexion($usuario);

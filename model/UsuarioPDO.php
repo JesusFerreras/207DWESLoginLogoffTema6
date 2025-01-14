@@ -5,28 +5,35 @@
         public static function validarUsuario($codUsuario, $password) {
             $seleccion = <<<FIN
                 select * from T01_Usuario
-                    where T01_CodUsuario = :codigo
+                    where T01_CodUsuario = :codUsuario
                     and T01_Password = sha2(:contrasena, 256)
                 ;
             FIN;
             
             $parametros = [
-                ':codigo' => $codUsuario,
+                ':codUsuario' => $codUsuario,
                 ':contrasena' => $codUsuario.$password
             ];
             
-            $datos = DBPDO::ejecutarConsulta($seleccion, $parametros)->fetchObject();
-
-            return new Usuario(
-                $datos->T01_CodUsuario,
-                $datos->T01_Password,
-                $datos->T01_DescUsuario,
-                $datos->T01_NumConexiones,
-                null,
-                $datos->T01_FechaHoraUltimaConexion,
-                $datos->T01_Perfil,
-                $datos->T01_ImagenUsuario
-            );
+            $consulta = DBPDO::ejecutarConsulta($seleccion, $parametros);
+            
+            if($consulta->rowCount() > 0) {
+                $datos = $consulta->fetchObject();
+                
+                return new Usuario(
+                    $datos->T01_CodUsuario,
+                    $datos->T01_Password,
+                    $datos->T01_DescUsuario,
+                    $datos->T01_NumConexiones,
+                    new DateTime($datos->T01_FechaHoraUltimaConexion),
+                    null,
+                    $datos->T01_Perfil,
+                    $datos->T01_ImagenUsuario,
+                    null
+                );
+            } else {
+                return false;
+            }
         }
         
         public static function registrarUltimaConexion($usuario) {
@@ -49,12 +56,51 @@
 
         }
         
-        public static function altaUsuario() {
-
+        public static function altaUsuario($codUsuario, $password, $descUsuario, $imagenUsuario = null) {
+            $insercion = <<<FIN
+                insert into T01_Usuario(T01_CodUsuario, T01_Password, T01_DescUsuario, T01_ImagenUsuario) values
+                    (:codUsuario, sha2(:contrasena, 256), :descUsuario, :imagenUsuario)
+                ;
+            FIN;
+            
+            $parametros = [
+                'codUsuario' => $codUsuario,
+                'contrasena' => $codUsuario.$password,
+                'descUsuario' => $descUsuario,
+                'imagenUsuario' => $imagenUsuario
+            ];
+            
+            $seleccion = <<<FIN
+                select * from T01_Usuario
+                    where T01_CodUsuario = $codUsuario
+                ;
+            FIN;
+            
+            DBPDO::ejecutarConsulta($insercion, $parametros);
+            
+            $datos = DBPDO::ejecutarConsulta($seleccion, $parametros)->fetchObject();
+            
+            return new Usuario(
+                $datos->T01_CodUsuario,
+                $datos->T01_Password,
+                $datos->T01_DescUsuario,
+                $datos->T01_NumConexiones,
+                new DateTime($datos->T01_FechaHoraUltimaConexion),
+                null,
+                $datos->T01_Perfil,
+                $datos->T01_ImagenUsuario,
+                null
+            );
         }
         
-        public static function validarCodNoExiste() {
-
+        public static function validarCodNoExiste($codUsuario) {
+            return (
+                DBPDO::ejecutarConsulta(<<<FIN
+                    select T01_CodUsuario from T01_Usuario
+                        where T01_CodUsuario = '$codUsuario'
+                    ;
+                FIN)->rowCount() == 0
+            );
         }
         
         public static function modificarUsuario() {

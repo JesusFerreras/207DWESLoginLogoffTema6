@@ -18,6 +18,7 @@
             } catch (PDOException $ex) {
                 $_SESSION['error'] = new AppError($ex->getCode(), $ex->getMessage(), $ex->getFile(), $ex->getLine(), $_SESSION['paginaEnCurso']);
                 $_SESSION['paginaEnCurso'] = 'error';
+                unset($DB);
                 header('index.html');
                 exit();
             } finally {

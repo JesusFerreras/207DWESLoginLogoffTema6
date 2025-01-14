@@ -5,11 +5,21 @@
         exit();
     }
     
+    if (isset($_REQUEST['miCuenta'])) {
+        $_SESSION['paginaEnCurso'] = 'WIP';
+        header('Location: index.php');
+        exit();
+    }
+    
     if (isset($_REQUEST['cerrarSesion'])) {
         session_destroy();
         $_SESSION['paginaEnCurso'] = 'inicioPublico';
         header('Location: index.php');
         exit();
+    }
+    
+    if (isset($_REQUEST['error'])) {
+        DBPDO::ejecutarConsulta('a');
     }
     
     if (isset($_REQUEST['detalle'])) {

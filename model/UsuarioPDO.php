@@ -59,15 +59,14 @@
         public static function altaUsuario($codUsuario, $password, $descUsuario, $imagenUsuario = null) {
             $insercion = <<<FIN
                 insert into T01_Usuario(T01_CodUsuario, T01_Password, T01_DescUsuario, T01_ImagenUsuario) values
-                    (:codUsuario, sha2(:contrasena, 256), :descUsuario, :imagenUsuario)
+                    (:codUsuario, sha2(:contrasena, 256), :descUsuario{$imagenUsuario==null? '' : ', :imagenUsuario')})
                 ;
             FIN;
             
             $parametros = [
                 'codUsuario' => $codUsuario,
                 'contrasena' => $codUsuario.$password,
-                'descUsuario' => $descUsuario,
-                'imagenUsuario' => $imagenUsuario
+                'descUsuario' => $descUsuario
             ];
             
             $seleccion = <<<FIN

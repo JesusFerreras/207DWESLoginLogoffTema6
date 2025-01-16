@@ -5,7 +5,7 @@
         exit();
     }
     
-    if (isset($_REQUEST['miCuenta'])) {
+    if (isset($_REQUEST['miCuenta']) || isset($_REQUEST['mtoDepartamento']) || isset($_REQUEST['REST'])) {
         $_SESSION['paginaEnCurso'] = 'WIP';
         header('Location: index.php');
         exit();

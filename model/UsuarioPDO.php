@@ -1,6 +1,9 @@
 <?php
     class UsuarioPDO implements UsuarioDB {
         
+        /**
+         * 
+         */
         #[\Override]
         public static function validarUsuario($codUsuario, $password) {
             $seleccion = <<<FIN
@@ -59,25 +62,26 @@
         public static function altaUsuario($codUsuario, $password, $descUsuario, $imagenUsuario = null) {
             $insercion = <<<FIN
                 insert into T01_Usuario(T01_CodUsuario, T01_Password, T01_DescUsuario, T01_ImagenUsuario) values
-                    (:codUsuario, sha2(:contrasena, 256), :descUsuario{$imagenUsuario==null? '' : ', :imagenUsuario')})
+                    (:codUsuario, sha2(:contrasena, 256), :descUsuario, :imagenUsuario)
                 ;
             FIN;
             
             $parametros = [
                 'codUsuario' => $codUsuario,
                 'contrasena' => $codUsuario.$password,
-                'descUsuario' => $descUsuario
+                'descUsuario' => $descUsuario,
+                'imagenUsuario' => $imagenUsuario
             ];
             
             $seleccion = <<<FIN
                 select * from T01_Usuario
-                    where T01_CodUsuario = $codUsuario
+                    where T01_CodUsuario = '$codUsuario'
                 ;
             FIN;
             
             DBPDO::ejecutarConsulta($insercion, $parametros);
             
-            $datos = DBPDO::ejecutarConsulta($seleccion, $parametros)->fetchObject();
+            $datos = DBPDO::ejecutarConsulta($seleccion)->fetchObject();
             
             return new Usuario(
                 $datos->T01_CodUsuario,

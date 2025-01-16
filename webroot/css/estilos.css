@@ -26,14 +26,14 @@
 }
 
 body.claro {
-    --fondo1: var(--fondo1C);
-    --fondo2: var(--fondo2C);
+    --fondo1: var(--fondo2C);
+    --fondo2: var(--fondo1C);
     --fondo3: var(--fondo3C);
     --fondo4: var(--fondo4C);
     --colorLetra: var(--colorLetraC);
 }
 
-body {
+body.oscuro {
     --fondo1: var(--fondo1O);
     --fondo2: var(--fondo2O);
     --fondo3: var(--fondo3O);
@@ -47,26 +47,102 @@ body {
     font-style: normal;
     font-weight: normal;
     margin: 0;
+    padding: 0;
     color: var(--colorLetra);
-    text-align: left;
+}
+
+a:hover, a:active {
+    color: var(--colorAcento);
 }
 
 body {
-    margin: 0;
-    padding: 0;
+    display: flex;
+    flex-flow: column;
     min-height: 100vh;
     height: fit-content;
     background-color: var(--fondo2);
-    flex-flow: column;
 }
+    header {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        margin: 0 32px;
+        padding: 16px 0;
+        border-bottom: 1px solid var(--colorLetra);
+    }
+        header > h1 {
+            flex: 1;
+        }
+        header > button {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 32px;
+            width: 32px;
+            border: none;
+            border-radius: 100%;
+            background: none;
+            font-size: 1.5em;
+            font-weight: bold;
+        }
+        header > button:hover {
+            cursor: pointer;
+            background-color: var(--fondo1);
+        }
+        header > form {
 
-a:hover {
-    color: var(--colorAcento);
-}
-a:active {
-    color: var(--colorAcentoO);
-}
-
+        }
+            header > form > input[type="submit"] {
+                padding: 8px 16px;
+                border: none;
+                border-radius: 16px;
+                background-color: var(--colorAcento);
+                color: var(--colorLetraO);
+            }
+            header > form > input[type="submit"]:hover {
+                background-color: var(--colorAcentoO);
+            }
+    main {
+        flex: 1;
+        padding: 0 32px;
+    }
+        form#accesoACuenta {
+            max-width: 25%;
+            min-width: 300px;
+            padding: 32px;
+            margin: auto;
+        }
+            form#accesoACuenta > * {
+                display: flex;
+                width: 100%;
+            }
+                form#accesoACuenta > div > * {
+                    width: 100%;
+                }
+    footer {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        flex-flow: row wrap;
+        padding: 8px;
+        background-color: var(--fondo4O);
+    }
+        footer > * {
+            min-width: fit-content;
+            width: 1;
+            color: var(--colorLetraO);
+        }
+        footer > a {
+            text-decoration: none;
+        }
+        footer > a:hover, footer > a:active {
+            color: var(--amarillo);
+        }
+            footer > a > img {
+                height: 28px;
+                width: 28px;
+            }
+/*
 header {
     min-height: 10vh;
     height: 10vh;
@@ -341,3 +417,4 @@ footer {
             height: 25px;
             width: 25px;
         }
+*/

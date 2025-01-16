@@ -1,14 +1,34 @@
 <?php
     class Usuario {
+        /** @var string $codUsuario Código del Usuario */
         private $codUsuario;
+        
+        /** @var string $password Contraseña encriptada */
         private $password;
+        
+        /** @var string $descUsuario Descripción del Usuario */
         private $descUsuario;
+        
+        /** @var int $numConexiones Número de veces que se ha conectado el Usuario */
         private $numConexiones;
+        
+        /** @var DateTime $fechaHoraUltimaConexion Fecha y Hora a la que se conecta el Usuario */
         private $fechaHoraUltimaConexion;
+        
+        /** @var DateTime $fechaHoraUltimaConexionAnterior Fecha y Hora a la que se conectó el Usuario por última vez */
         private $fechaHoraUltimaConexionAnterior;
+        
+        /** @var string $perfil Perfil del Usuario, puede ser 'administrador' o 'usuario' */
         private $perfil;
+        
+        /** @var Image $imagenUsuario Imagen del Usuario */
         private $imagenUsuario;
+        
+        /**
+         *  
+         */
         private $listaOpinionesUsuario;
+        
         
         public function __construct($codUsuario, $password, $descUsuario, $numConexiones, $fechaHoraUltimaConexion, $fechaHoraUltimaConexionAnterior, $perfil, $imagenUsuario, $listaOpinionesUsuario) {
             $this->codUsuario = $codUsuario;
